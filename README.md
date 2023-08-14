@@ -3,8 +3,7 @@
 - The arrow function has a lexical scoping to `this` context.
 - The arrow function syntax is heavily seen when using `callback functions`.
 
-- They don’t have their own `this` context. When used inside the outer (enclosing) function, this keyword will point to where the function is present.
-
+ 
 ```javascript 
 const user= {
      
@@ -16,7 +15,28 @@ const user= {
 console.log(user.greet()); 
 ```
 
-- In the above code output will be `Hola I am undefined.` since In **greet** function `this` is pointing to  `global object`(**arrow function `this` --> scope where parent present**
+- In the above code output will be `Hola I am undefined.` since In **greet** function `this` is pointing to  `global object`(**arrow function `this` --> scope where parent present**)
+
+
+
+```javascript
+const user= {
+     
+    name: "sree",
+    printName:function(){
+
+      greet=() => {
+      console.log(this.name);
+    }
+      greet();
+},
+  };
+  user.printName();
+  ```
+
+
+-  They don’t have their own `this` context. When used inside the outer (enclosing) function, `this` keyword  points to scope where the function is present.
+
 
 
 ``` javascript
@@ -33,7 +53,9 @@ let animals = {
 animals.printdomesticAnimals(); 
 ```
 
-- In the above code normal function `printdomesticAnimals`'s this points to `animals` but settimeout function point to window object but if we repce it with `arrow function`
+
+- In the above code normal function `printdomesticAnimals`'s `this` points to `animals` but `settimeout` function point to window object but if we replace it with `arrow function`
+
 
 ``` javascript
 let animals = {
@@ -48,9 +70,12 @@ let animals = {
 };
 animals.printdomesticAnimals(); 
 ```
+
 - arrow function this points to scope where parent present(here arrow function parent is `printdomesticAnimals` present inside  `animals`  object so it points to animals )
 
+
 - Arrow function can never be a method
+
 - An arrow function can never be a constructor
 
 ```javascript
@@ -62,6 +87,7 @@ const Person = () => {
   console.log(user);
 ```
 > TypeError: Person is not a constructor
+
 
 - They are used in callback, promise chaining, array methods, anonymous functions.
 - The Arrow functions shine most whenever you need this to be attached to the context and not its own function.
